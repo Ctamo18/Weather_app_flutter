@@ -2,6 +2,11 @@
 
 A new Flutter project.
 
+Group members
+-TAMO Ngouobou Calvine Chantal Calvine
+-COULIBALY Abdel-Aziz
+-Kouadjo Nguessan Jean Jacques 
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
