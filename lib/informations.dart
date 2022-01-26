@@ -5,7 +5,6 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:app_weather_flutter/weather_details.dart';
-import 'package:intl/date_symbol_data_file.dart';
 import 'package:intl/intl.dart';
 
 class Information extends StatefulWidget {
@@ -61,197 +60,205 @@ class _InformationState extends State<Information> {
 
         body: Container(
           color: Colors.grey[200],
-          padding: EdgeInsets.only(top: 80, left: 10, right: 10),
+          padding: EdgeInsets.only(top: 10, left: 10, right: 10, bottom: 10),
           child: Column(
             children: [
-              Container(
-                margin: EdgeInsets.only(top: 200),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20)),
-                child: Row(
-                  children: [
+              Expanded(
+                child: ListView(
+                  children: <Widget>[
                     Container(
-                      margin: EdgeInsets.only(left: 15),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(20)),
+                      child: Row(
                         children: [
-                          _getWeatherInfo("cityName"),
-                          SizedBox(height: 3),
-                          _getWeatherInfo("dt"),
-                          SizedBox(height: 5),
-                          Row(children: [
-                            _getWeatherInfo('icon'),
-                            _getWeatherInfo("temp"),
-                          ])
+                          Container(
+                            margin: EdgeInsets.only(left: 15),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                _getWeatherInfo("cityName"),
+                                SizedBox(height: 3),
+                                _getWeatherInfo("dt"),
+                                SizedBox(height: 5),
+                                Row(children: [
+                                  _getWeatherInfo('icon'),
+                                  _getWeatherInfo("temp"),
+                                ])
+                              ],
+                            ),
+                          ),
+                          Spacer(),
+                          Container(
+                            margin: EdgeInsets.only(right: 15),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                _getWeatherInfo("description"),
+                                SizedBox(height: 3),
+                                _getWeatherInfo("tempMax"),
+                                SizedBox(height: 5),
+                                _getWeatherInfo("feelsLike")
+                              ],
+                            ),
+                          ),
                         ],
                       ),
                     ),
-                    Spacer(),
-                    Container(
-                      margin: EdgeInsets.only(right: 15),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          _getWeatherInfo("description"),
-                          SizedBox(height: 3),
-                          _getWeatherInfo("tempMax"),
-                          SizedBox(height: 5),
-                          _getWeatherInfo("feelsLike")
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
 
-              //Previsional
+                    //Previsional
 
-              Container(
-                padding:
-                    EdgeInsets.only(top: 10, left: 10, bottom: 10, right: 10),
-                margin: EdgeInsets.only(top: 10),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20)),
-                child: Column(
-                  children: [
                     Container(
-                      margin: EdgeInsets.all(10),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                      padding: EdgeInsets.only(
+                          top: 10, left: 10, bottom: 10, right: 10),
+                      margin: EdgeInsets.only(top: 10),
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(20)),
+                      child: Column(
                         children: [
                           Container(
-                              child: Image.asset('assets/images/sunrise.jpg',
-                                  height: 30),
-                              margin: EdgeInsets.only(right: 10)),
-                          Container(
-                            padding: EdgeInsets.only(top: 10),
-                            child: Text("Sunrise",
-                                style: TextStyle(color: Colors.black)),
-                          ),
-                          Spacer(),
-                          Container(
-                            padding: EdgeInsets.only(top: 10),
-                            child: _getWeatherInfo("sunrise"),
-                          ),
-                          SizedBox(height: 5),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      child: Row(children: [
-                        Expanded(child: Divider(color: Colors.black)),
-                      ]),
-                    ),
-                    Container(
-                      margin: EdgeInsets.all(10),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            child: Image.asset('assets/images/sunset.png',
-                                height: 30),
-                            margin: EdgeInsets.only(right: 13),
+                            margin: EdgeInsets.all(10),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                    child: Image.asset(
+                                        'assets/images/sunrise.jpg',
+                                        height: 30),
+                                    margin: EdgeInsets.only(right: 10)),
+                                Container(
+                                  padding: EdgeInsets.only(top: 10),
+                                  child: Text("Sunrise",
+                                      style: TextStyle(color: Colors.black)),
+                                ),
+                                Spacer(),
+                                Container(
+                                  padding: EdgeInsets.only(top: 10),
+                                  child: _getWeatherInfo("sunrise"),
+                                ),
+                                SizedBox(height: 5),
+                              ],
+                            ),
                           ),
                           Container(
-                            padding: EdgeInsets.only(top: 10),
-                            child: Text("Sunset",
-                                style: TextStyle(color: Colors.black)),
-                          ),
-                          Spacer(),
-                          Container(
-                            padding: EdgeInsets.only(top: 10),
-                            child: _getWeatherInfo("sunset"),
-                          ),
-                          SizedBox(height: 5),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      child: Row(children: [
-                        Expanded(child: Divider(color: Colors.black)),
-                      ]),
-                    ),
-                    Container(
-                      margin: EdgeInsets.all(10),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            child: Image.asset('assets/images/wind.png',
-                                height: 30),
-                            margin: EdgeInsets.only(right: 13),
+                            child: Row(children: [
+                              Expanded(child: Divider(color: Colors.black)),
+                            ]),
                           ),
                           Container(
-                            padding: EdgeInsets.only(top: 10),
-                            child: Text("Wind",
-                                style: TextStyle(color: Colors.black)),
-                          ),
-                          Spacer(),
-                          Container(
-                            padding: EdgeInsets.only(top: 10),
-                            child: _getWeatherInfo("windSpeed"),
-                          ),
-                          SizedBox(height: 5),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      child: Row(children: [
-                        Expanded(child: Divider(color: Colors.black)),
-                      ]),
-                    ),
-                    Container(
-                      margin: EdgeInsets.all(10),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            child: Image.asset('assets/images/humidity.png',
-                                height: 30),
-                            margin: EdgeInsets.only(right: 13),
+                            margin: EdgeInsets.all(10),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  child: Image.asset('assets/images/sunset.png',
+                                      height: 30),
+                                  margin: EdgeInsets.only(right: 13),
+                                ),
+                                Container(
+                                  padding: EdgeInsets.only(top: 10),
+                                  child: Text("Sunset",
+                                      style: TextStyle(color: Colors.black)),
+                                ),
+                                Spacer(),
+                                Container(
+                                  padding: EdgeInsets.only(top: 10),
+                                  child: _getWeatherInfo("sunset"),
+                                ),
+                                SizedBox(height: 5),
+                              ],
+                            ),
                           ),
                           Container(
-                            padding: EdgeInsets.only(top: 10),
-                            child: Text("Humidity",
-                                style: TextStyle(color: Colors.black)),
-                          ),
-                          Spacer(),
-                          Container(
-                            padding: EdgeInsets.only(top: 10),
-                            child: _getWeatherInfo("humidity"),
-                          ),
-                          SizedBox(height: 5),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      child: Row(children: [
-                        Expanded(child: Divider(color: Colors.black)),
-                      ]),
-                    ),
-                    Container(
-                      margin: EdgeInsets.all(10),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            child: Image.asset('assets/images/pressure.png',
-                                height: 30),
-                            margin: EdgeInsets.only(right: 13),
+                            child: Row(children: [
+                              Expanded(child: Divider(color: Colors.black)),
+                            ]),
                           ),
                           Container(
-                            padding: EdgeInsets.only(top: 8),
-                            child: Text("Pressure",
-                                style: TextStyle(color: Colors.black)),
+                            margin: EdgeInsets.all(10),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  child: Image.asset('assets/images/wind.png',
+                                      height: 30),
+                                  margin: EdgeInsets.only(right: 13),
+                                ),
+                                Container(
+                                  padding: EdgeInsets.only(top: 10),
+                                  child: Text("Wind",
+                                      style: TextStyle(color: Colors.black)),
+                                ),
+                                Spacer(),
+                                Container(
+                                  padding: EdgeInsets.only(top: 10),
+                                  child: _getWeatherInfo("windSpeed"),
+                                ),
+                                SizedBox(height: 5),
+                              ],
+                            ),
                           ),
-                          Spacer(),
                           Container(
-                            padding: EdgeInsets.only(top: 8),
-                            child: _getWeatherInfo("pressure"),
+                            child: Row(children: [
+                              Expanded(child: Divider(color: Colors.black)),
+                            ]),
                           ),
-                          SizedBox(height: 5),
+                          Container(
+                            margin: EdgeInsets.all(10),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  child: Image.asset(
+                                      'assets/images/humidity.png',
+                                      height: 30),
+                                  margin: EdgeInsets.only(right: 13),
+                                ),
+                                Container(
+                                  padding: EdgeInsets.only(top: 10),
+                                  child: Text("Humidity",
+                                      style: TextStyle(color: Colors.black)),
+                                ),
+                                Spacer(),
+                                Container(
+                                  padding: EdgeInsets.only(top: 10),
+                                  child: _getWeatherInfo("humidity"),
+                                ),
+                                SizedBox(height: 5),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            child: Row(children: [
+                              Expanded(child: Divider(color: Colors.black)),
+                            ]),
+                          ),
+                          Container(
+                            margin: EdgeInsets.all(10),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  child: Image.asset(
+                                      'assets/images/pressure.png',
+                                      height: 30),
+                                  margin: EdgeInsets.only(right: 13),
+                                ),
+                                Container(
+                                  padding: EdgeInsets.only(top: 8),
+                                  child: Text("Pressure",
+                                      style: TextStyle(color: Colors.black)),
+                                ),
+                                Spacer(),
+                                Container(
+                                  padding: EdgeInsets.only(top: 8),
+                                  child: _getWeatherInfo("pressure"),
+                                ),
+                                SizedBox(height: 5),
+                              ],
+                            ),
+                          ),
                         ],
                       ),
                     ),
