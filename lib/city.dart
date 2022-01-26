@@ -234,7 +234,7 @@ class _CityViewState extends State<CityView> {
             if (snapshot.hasData) {
               return Text(
                 snapshot.data!.temp.toStringAsFixed(0) + '°C',
-                style: TextStyle(fontSize: 40, color: Colors.black),
+                style: TextStyle(fontSize: 36, color: Colors.black),
               );
             } else if (snapshot.hasError) {
               return Text('${snapshot.error}');
