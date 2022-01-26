@@ -2,6 +2,10 @@
 
 A new Flutter project.
 
+-TAMO Ngouobou Calvine Chantal
+-COULIBALY Abdel-Aziz
+-Kouadjo Nguessan Jean Jacquesan
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
