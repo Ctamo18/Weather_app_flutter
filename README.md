@@ -2,9 +2,10 @@
 
 A new Flutter project.
 
--TAMO Ngouobou Calvine Chantal
+Group members
+-TAMO Ngouobou Calvine Chantal Calvine
 -COULIBALY Abdel-Aziz
--Kouadjo Nguessan Jean Jacquesan
+-Kouadjo Nguessan Jean Jacques 
 
 ## Getting Started
 
